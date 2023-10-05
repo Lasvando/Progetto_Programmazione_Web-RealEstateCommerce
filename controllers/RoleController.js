@@ -6,8 +6,14 @@ const User = require('../models/User');
 const create = async (req, res) => {
     const errors = validationResult(req)
     if (errors.isEmpty()) {
-        const role = await Role.create(req.body)
-    
+        let role = {}
+
+        try {
+            role = await Role.create(req.body)
+        } catch (error) {
+            return res.status(500).json({errors: error})
+        }
+        
         return res.status(201).send(role)
     }
 
@@ -15,17 +21,29 @@ const create = async (req, res) => {
 }
 
 const findAll = async (req, res) => {
-    const roles = await Role.findAll({
-        include: [User]
-    });
+    let roles = {}
+
+    try {
+        roles = await Role.findAll({
+            include: [User]
+        });
+    } catch (error) {
+        return res.status(500).json({errors: error})
+    }
 
     res.status(200).send(roles)
 }
 
 const find = async (req, res) => {
-    const role = await Role.findByPk(req.params.id)
-    if(!role) 
-        return res.status(404).send()
+    let role = {}
+
+    try {
+        role = await Role.findByPk(req.params.id)
+    } catch (error) {
+        return res.status(500).json({errors: error})
+    }
+    
+    if(!role) return res.status(404).send()
 
     res.status(200).send(role)
 }
@@ -35,7 +53,12 @@ const update = async (req, res) => {
 }
 
 const deleteById = async (req, res) => {
-    await Role.destroy({where: {id: req.params.id}})
+    try {
+        await Role.destroy({where: {id: req.params.id}})
+    } catch (error) {
+        return res.status(500).json({errors: error})
+    }
+    
     res.status(204).send()
 }
 

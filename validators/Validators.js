@@ -37,9 +37,15 @@ const createTransaction = [
   body('propertyId', 'propertyId is mandatory').notEmpty()
 ]
 
+const login = [
+  body('email', 'email is mandatory').notEmpty(),
+  body('password', 'password is mandatory').notEmpty()
+]
+
 module.exports = {
   createUser,
   createRole,
   createProperty,
-  createTransaction
+  createTransaction,
+  login
 }

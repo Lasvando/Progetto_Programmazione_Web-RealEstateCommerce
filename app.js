@@ -1,10 +1,15 @@
 const express = require('express')
 const morgan = require('morgan')
+const dotenv = require('dotenv');
 const bodyParser = require('body-parser')
 const sequelize = require('./sequelize')
 const associate = require('./models/Associations')
 
+//DB table associations
 associate()
+
+// get config vars
+dotenv.config();
 
 sequelize.sync()
 .then(() => console.log("DB synced"))
@@ -19,9 +24,12 @@ app.use(bodyParser.json())
 
 app.use(morgan('common'));
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 //Routes
+const authRoute = require('./routes/AuthRoute')
+app.use('/api/auth', authRoute)
+
 const userRoute = require('./routes/UserRoute')
 app.use('/api/user', userRoute)
 

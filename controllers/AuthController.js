@@ -1,0 +1,53 @@
+const {validationResult} = require('express-validator')
+const AuthService = require('../services/AuthService')
+const JwtService = require('../services/JwtService')
+
+
+const login = async (req, res) => {
+    const errors = validationResult(req)
+    if (errors.isEmpty()) {
+        let user = {};
+        
+        try {
+            user = await AuthService.login(req.body.email, req.body.password)
+        } catch (error) {
+            return res.status(500).json({errors: error})
+        }
+        
+        if(!user) return res.status(401).json({errors: "Email not registered or wrong combination"})
+
+        const jwt = await JwtService.generateAccessToken({
+            username: user.username,
+            email: user.email
+        })
+    
+        return res.status(200).send({jwt})
+    }
+    res.status(422).json({errors: errors.array()})
+}
+
+const register = async (req, res) => {
+    const errors = validationResult(req)
+    if (errors.isEmpty()) {
+        const username = req.body.username;
+        const email = req.body.email;
+        const password = req.body.password;
+        const roleId = req.body.roleId;
+        const phone = req.body.phone;
+
+        try {
+            const user = await AuthService.register(username, email, password, roleId, phone)
+        } catch (error) {
+            return res.status(500).json({errors: error})
+        }
+        
+
+        return res.status(200).send({user, jwt})
+    }
+    res.status(422).json({errors: errors.array()})
+}
+
+module.exports = {
+    login,
+    register
+}

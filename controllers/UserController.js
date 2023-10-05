@@ -1,62 +1,82 @@
-const {validationResult} = require('express-validator')
-var crypto = require('crypto'); 
-const User = require('../models/User');
-const { where } = require('sequelize');
-const Role = require('../models/Role');
+const { validationResult } = require("express-validator");
+const UserService = require("../services/UserService");
+const JwtService = require("../services/JwtService");
 
 const create = async (req, res) => {
-    const errors = validationResult(req)
-    if (errors.isEmpty()) {
-      // in case request params meet the validation criteria
+  const errors = validationResult(req);
+  if (errors.isEmpty()) {
+    let jwt = {}
+    let user = {}
+    
+    // in case request params meet the validation criteria
+    const username = req.body.username;
+    const email = req.body.email;
+    const password = req.body.password;
+    const roleId = req.body.roleId;
+    const phone = req.body.phone;
 
-      var password = crypto.createHash('sha256').update(req.body.password).digest('base64');
-      const date = new Date().toISOString();
-
-      var data = {
-        username: req.body.username,
-        email: req.body.email,
+    try {
+      user = await UserService.create(
+        username,
+        email,
         password,
-        roleId: req.body.roleId,
-        phone: req.body.phone
-      }
-      
-      const user = await User.create(data)
-      const result = await User.findByPk(user.id, {
-        include: [Role]
-      })
+        roleId,
+        phone
+      );
 
-      return res.status(201).send(result)
+      jwt = await JwtService.generateAccessToken({
+        username: user.username,
+        email: user.email,
+      });
+    } catch (error) {
+      return res.status(500).json({ errors: error });
     }
-    res.status(422).json({errors: errors.array()})
-}
+
+    return res.status(201).send({ user, jwt });
+  }
+  res.status(422).json({ errors: errors.array() });
+};
 
 const findAll = async (req, res) => {
-    const users = await User.findAll({
-      include: [Role]
-    })
+  let users = {}
 
-    return res.status(200).send(users)
-}
+  try {
+    users = await UserService.findAll();
+  } catch (error) {
+    return res.status(500).json({ errors: error });
+  }
+
+  return res.status(200).send(users);
+};
 
 const find = async (req, res) => {
-  const users = await User.findByPk(req.params.id)
+  let user = {}
+  
+  try {
+    user = await UserService.find(req.params.id);
+  } catch (error) {
+    return res.status(500).json({ errors: error });
+  }
 
-  return res.status(200).send(users)
-}
+  return res.status(200).send(user);
+};
 
-const update = async (req, res) => {
-    
-}
+const update = async (req, res) => {};
 
 const deleteById = async (req, res) => {
-    User.destroy({where: {id: req.params.id}})
-    res.status(204).send();
-}
+  try {
+    await UserService.deleteById(req.params.id);
+  } catch (error) {
+    return res.status(500).json({ errors: error });
+  }
+
+  res.status(204).send();
+};
 
 module.exports = {
-    create,
-    findAll,
-    find,
-    update,
-    deleteById
-}
+  create,
+  findAll,
+  find,
+  update,
+  deleteById,
+};
