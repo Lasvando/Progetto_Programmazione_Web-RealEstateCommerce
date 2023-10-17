@@ -1,0 +1,57 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8"></div>
+        <div class="col-md-4 p-3 rounded bg-info text-white">
+            <div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <span>Title</span>
+                        <p>{{property?.title}}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <span>Price</span>
+                        <p>{{property?.price}}€</p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div>
+                <div class="row">
+                    <div class="col">
+                        <span>Description</span>
+                        <p>{{property?.description}}</p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <span>Author</span>
+                        <p>{{property?.user?.username}}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <span>Author Phone</span>
+                        <p>{{property?.user?.phone}}</p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div>
+                <div class="row">
+                    <div class="col">
+                        <span>Author Email</span>
+                        <p>{{property?.user?.email}}</p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div>
+                <span>Book a visit by leaving a deposit of 100€</span>
+                <button class="btn btn-success w-100 mt-3" (click)="book()">Book</button>
+            </div>
+        </div>
+    </div>
+</div>

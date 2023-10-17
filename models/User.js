@@ -24,10 +24,6 @@ User.init({
         unique: true,
         allowNull: false
     },
-    lastLogin: {
-        type: DataTypes.DATE,
-        allowNull: true
-    }
 },
 {
     sequelize,

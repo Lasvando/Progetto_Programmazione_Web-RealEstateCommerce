@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const bodyParser = require('body-parser')
 const sequelize = require('./sequelize')
 const associate = require('./models/Associations')
+var cors = require('cors')
 
 //DB table associations
 associate()
@@ -15,6 +16,11 @@ sequelize.sync()
 .then(() => console.log("DB synced"))
 
 const app = express()
+
+//Static files
+app.use(express.static('public'));
+
+app.use(cors())
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))

@@ -1,0 +1,91 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <form [formGroup]="propertyCreateForm" (ngSubmit)="create()">
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input
+        type="title"
+        class="form-control"
+        id="title"
+        aria-describedby="titleHelp"
+        formControlName="title"
+      />
+      <div
+        *ngIf="title?.invalid && (title?.dirty || title?.touched)"
+        class="text-danger"
+      >
+        <div *ngIf="title?.errors?.['required']">Title is required.</div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="address" class="form-label">Address</label>
+      <input
+        type="address"
+        class="form-control"
+        id="address"
+        aria-describedby="addressHelp"
+        formControlName="address"
+      />
+      <div
+        *ngIf="address?.invalid && (address?.dirty || address?.touched)"
+        class="text-danger"
+      >
+        <div *ngIf="address?.errors?.['required']">Address is required.</div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="price" class="form-label">Price</label>
+      <input
+        type="price"
+        class="form-control"
+        id="price"
+        aria-describedby="priceHelp"
+        formControlName="price"
+      />
+      <div
+        *ngIf="price?.invalid && (price?.dirty || price?.touched)"
+        class="text-danger"
+      >
+        <div *ngIf="price?.errors?.['required']">Price is required.</div>
+        <div *ngIf="price?.errors?.['min']">Price cannot be lower than 1.</div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea
+        name="description"
+        class="form-control"
+        id="description"
+        cols="30"
+        rows="10"
+        formControlName="description"
+        aria-describedby="descriptionHelp"
+      ></textarea>
+      <div
+        *ngIf="
+          description?.invalid && (description?.dirty || description?.touched)
+        "
+        class="text-danger"
+      >
+        <div *ngIf="description?.errors?.['required']">
+          Description is required.
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="file" class="form-label">Photos</label>
+      <input
+        class="form-control"
+        #Image
+        type="file"
+        id="file"
+        (change)="getFiles($event)"
+        multiple
+      />
+      <div *ngIf="!checkFiles" class="text-danger">
+        At least one image is required.
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+  </form>
+</div>

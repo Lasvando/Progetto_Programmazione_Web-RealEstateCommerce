@@ -1,0 +1,9 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3" *ngFor="let property of properties" >
+            <app-property-card [property]="property"></app-property-card>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg bg-light mb-4">
+    <div class="container">
+      <a class="navbar-brand" routerLink="/">Realt Estate Commerce</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+              (click)="collapse.toggle()"
+              [attr.aria-expanded]="!isCollapsed">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="!logged">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/about">About</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="logged">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/about" routerLinkActive="active">About</a>
+          </li>
+          <li class="nav-item" *ngIf="roleId === '2'">
+            <a class="nav-link" routerLink="/property-create" routerLinkActive="active">Place an Ad</a>
+          </li>
+        </ul>
+        <div class="d-flex">
+          <div *ngIf="!logged">
+            <button class="btn btn-primary btn-sm rounded-pill mx-1" routerLink="/login">Login</button>
+            <button class="btn btn-info btn-sm rounded-pill mx-1" routerLink="/register">Registrati</button>
+          </div>
+          <div ngbDropdown *ngIf="logged">
+            <div class="nav-link" role="button" ngbDropdownToggle>
+              <span class="me-2">{{ username }}</span>
+              <fa-icon [icon]="faCircleUser"></fa-icon>
+            </div>
+            <ul class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+              <li><a class="dropdown-item" routerLink="account">Account</a></li>
+              <li><a class="dropdown-item" routerLink="legal-notes">Note legali</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" (click)="logout()" routerLink="" >Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>

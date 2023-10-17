@@ -4,7 +4,6 @@ const createUser = [
   body('username', 'username is mandatory').notEmpty(),
   body('email', 'Invalid email').isEmail(),
   body('password', 'password is mandatory').notEmpty(),
-  body('password-confirm', 'password-confirm is mandatory').notEmpty(),
   body('password', 'The minimum password length is 6 characters').isLength({min: 6}),
   body('roleId', 'roleId is mandatory').notEmpty(),
   body('phone', 'phone number is mandatory').notEmpty(),
