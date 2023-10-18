@@ -2,6 +2,7 @@ const Role = require('./Role')
 const User = require('./User')
 const Property = require('./Property')
 const Transaction = require('./Transaction')
+const PropertyImage = require('./PropertyImage')
 
 const associate = () => {
     //ROLE-USER ONE-MANY
@@ -19,6 +20,10 @@ const associate = () => {
     //PROPERTY-TRANSACTION ONE-ONE
     Transaction.belongsTo(Property)
     Property.hasOne(Transaction)
+
+    //PROPERTY_IMAGE-PROPERTY
+    PropertyImage.belongsTo(Property)
+    Property.hasMany(PropertyImage)
 }
 
 module.exports = associate

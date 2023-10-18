@@ -20,7 +20,6 @@ const createProperty = [
   body('address', 'address is mandatory').notEmpty(),
   body('price', 'price is mandatory').notEmpty(),
   body('price', 'price has to be a float and cannot be minor than 0').isFloat({min: 0}),
-  body('userId', 'userId is mandatory').notEmpty(),
 ]
 
 const createTransaction = [

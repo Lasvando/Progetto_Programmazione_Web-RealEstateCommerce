@@ -1,15 +1,32 @@
 const Property = require('../models/Property');
+const PropertyImage = require('../models/PropertyImage');
 const { where } = require('sequelize');
 const {validationResult} = require('express-validator');
 const User = require('../models/User');
+const dotenv = require('dotenv');
+
+// get config vars
+dotenv.config();
 
 const create = async (req, res) => {
     const errors = validationResult(req)
     if (errors.isEmpty()) {
         let result = {}
-
+        let data = []
+        req.body.userId = req.user.payload.id
+        console.log(req.files)
         try {
             const property = await Property.create(req.body)
+            req.files.forEach(element => {
+                data.push({
+                    filename: element.filename,
+                    mime_type: element.mimetype,
+                    link: process.env.BASE_URL + process.env.PORT + "/properties/" + element.filename,
+                    propertyId: property.id
+                })
+            });
+
+            const propertyImage = await PropertyImage.bulkCreate(data, { returning: true })
             result = await Property.findByPk(property.id, {
                 include: [User]
             })
@@ -27,7 +44,7 @@ const findAll = async (req, res) => {
     let properties = {}
     try {
         properties = await Property.findAll({
-            include:[User]
+            include:[User, PropertyImage]
         })
     } catch (error) {
         return res.status(500).json({errors: error})
@@ -40,7 +57,7 @@ const find = async (req, res) => {
     let property = {}
     try {
         property = await Property.findByPk(req.params.id, {
-            include: [User]
+            include: [User, PropertyImage]
         })
     } catch (error) {
         return res.status(500).json({errors: error})

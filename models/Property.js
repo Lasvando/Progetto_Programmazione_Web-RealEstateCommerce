@@ -16,10 +16,6 @@ Property.init({
         type: DataTypes.STRING,
         allowNull: false
     },
-    photo_path:{
-        type: DataTypes.STRING,
-        unique: true,
-    },
     price: {
         type: DataTypes.FLOAT,
         allowNull: false
