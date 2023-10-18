@@ -8,7 +8,7 @@ import { PropertyService } from 'src/app/service/property.service';
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements OnInit {
-  properties: Property[] | undefined = undefined
+  properties: Property[] | undefined = undefined 
 
   constructor(private propertyService : PropertyService){}
 

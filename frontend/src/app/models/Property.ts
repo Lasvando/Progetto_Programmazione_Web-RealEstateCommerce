@@ -10,4 +10,11 @@ export interface Property {
         email: string,
         phone: string
     }
+    property_images: [
+        {
+            id: number,
+            filename: string
+            link: string
+        }
+    ]
 }

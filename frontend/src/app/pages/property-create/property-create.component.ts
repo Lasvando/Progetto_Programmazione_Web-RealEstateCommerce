@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { PropertyService } from 'src/app/service/property.service';
 
 @Component({
   selector: 'app-property-create',
@@ -17,7 +19,7 @@ export class PropertyCreateComponent {
     price: new FormControl('', [Validators.required, Validators.min(1)]),
   });
 
-  constructor() {}
+  constructor(private propertyService: PropertyService, private router: Router) {}
 
   get title() {
     return this.propertyCreateForm.get('title');
@@ -46,6 +48,10 @@ export class PropertyCreateComponent {
       this.checkFiles = false
       return
     }
-    console.log(this.files)
+
+    this.propertyService.create(this.title?.value, this.description?.value, this.price?.value, this.address?.value, this.files).subscribe({
+      next: (result) => this.router.navigateByUrl('/'),
+      error: err => console.log(err)
+    })
   }
 }

@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <div class="container">
-  <form [formGroup]="propertyCreateForm" (ngSubmit)="create()">
+  <form [formGroup]="propertyCreateForm" (ngSubmit)="create()" enctype="multipart/form-data">
     <div class="mb-3">
       <label for="title" class="form-label">Title</label>
       <input

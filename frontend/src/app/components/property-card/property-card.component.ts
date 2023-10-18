@@ -7,5 +7,5 @@ import { Property } from 'src/app/models/Property';
   styleUrls: ['./property-card.component.css']
 })
 export class PropertyCardComponent {
-  @Input() property: Property | undefined = undefined
+  @Input() property: Property | undefined
 }

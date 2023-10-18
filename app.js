@@ -23,10 +23,10 @@ app.use(express.static('public'));
 app.use(cors())
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb'}))
 
 // parse application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json({ limit: '50mb'}))
 
 app.use(morgan('common'));
 
