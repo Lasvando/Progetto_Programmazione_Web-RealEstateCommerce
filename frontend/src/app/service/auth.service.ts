@@ -16,12 +16,11 @@ export class AuthService {
     return this.httpClient.post<Jwt>(this.apiUrl + "/api/auth/login", {email, password});
   }
 
-  register(username: any, email: any, phone: any, roleId: any, password: any){
+  register(username: any, email: any, phone: any, password: any){
     return this.httpClient.post<Jwt>(this.apiUrl + "/api/auth/register", {
       username,
       email,
       phone,
-      roleId,
       password
     })
   }
@@ -44,7 +43,7 @@ export class AuthService {
   }
 
   isLoggedIn() {
-      return moment().isBefore(this.getExpiration());
+      return moment().isBefore(this.getExpiration()) && (localStorage.getItem('JWT') != undefined);
   }
 
   isLoggedOut() {
@@ -58,5 +57,5 @@ export class AuthService {
 
     const expiresAt = JSON.parse(expiration);
     return moment(expiresAt);
-  }   
+  }
 }

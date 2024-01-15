@@ -39,4 +39,39 @@ export class PropertyService {
 
     return this.http.post<Property>(this.apiUrl + '/api/property', formData);
   }
+
+  update(
+    id: any,
+    title: any,
+    description: any,
+    price: any,
+    address: any,
+    photos: File[] | null,
+    oldImageIds: number[]
+  ) {
+    let formData: FormData = new FormData();
+
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('address', address);
+    formData.append('price', price);
+    
+    if(oldImageIds){
+      for (var i = 0; i < oldImageIds.length; i++) {
+        formData.append('oldIds', oldImageIds[i].toString());
+      }
+    }
+
+    if(photos){
+      for (var i = 0; i < photos.length; i++) {
+        formData.append('photos', photos[i]);
+      }
+    }
+
+    return this.http.put<Property>(this.apiUrl + '/api/property/' + id, formData);
+  }
+
+  delete(id: number) {
+    return this.http.delete<Property>(this.apiUrl + '/api/property/' + id);
+  }
 }

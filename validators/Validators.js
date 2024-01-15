@@ -5,7 +5,6 @@ const createUser = [
   body('email', 'Invalid email').isEmail(),
   body('password', 'password is mandatory').notEmpty(),
   body('password', 'The minimum password length is 6 characters').isLength({min: 6}),
-  body('roleId', 'roleId is mandatory').notEmpty(),
   body('phone', 'phone number is mandatory').notEmpty(),
   body('phone', 'phone is not valid').isMobilePhone('it-IT')
 ]
@@ -23,14 +22,7 @@ const createProperty = [
 ]
 
 const createTransaction = [
-  body('debit_card', 'debit_card number is mandatory').notEmpty(),
-  body('debit_card', 'debit_card number is not valid').isCreditCard({
-    provider: 'visa' | 'amex' | 'mastercard'
-  }),
-  body('debit_card_issue_date', 'debit_card_issue_date is mandatory').notEmpty(),
-  body('debit_card_issue_date', 'debit_card_issue_date is not valid').isISO8601().isDate(),
-  body('cvv', 'cvv is mandatory').notEmpty(),
-  body('cvv', 'cvv should be integer').isInt(),
+  body('paypalTransactionId', 'paypal transaction id is mandatory').notEmpty(),
   body('userId', 'userId is mandatory').notEmpty(),
   body('propertyId', 'propertyId is mandatory').notEmpty()
 ]

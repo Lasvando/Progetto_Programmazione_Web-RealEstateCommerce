@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/service/auth.service';
 import { Router } from '@angular/router';
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit  {
   jwt: string | undefined = undefined
   loginForm = new FormGroup({
     email: new FormControl('',[
@@ -19,8 +19,12 @@ export class LoginComponent {
       Validators.required
     ])
   })
+  failedLogin: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) {}
+  ngOnInit(): void {
+
+  }
 
   get email() {return this.loginForm.get('email')}
   get password() {return this.loginForm.get('password')}
@@ -32,7 +36,10 @@ export class LoginComponent {
         this.authService.setSession(jwt)
         this.router.navigateByUrl('/');
       },
-      error: err => console.log(err)
+      error: err => {
+        console.log(err)
+        this.failedLogin = true
+      }
     });
   }
 }

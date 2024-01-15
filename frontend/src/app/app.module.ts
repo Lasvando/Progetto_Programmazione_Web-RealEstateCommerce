@@ -16,6 +16,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PropertyDetailsComponent } from './pages/property-details/property-details.component';
 import { PropertyCreateComponent } from './pages/property-create/property-create.component';
 import { AuthInterceptor } from './interceptors/auth-interceptor.interceptor';
+import { PropertyImageCarouselComponent } from './pages/property-details/property-image-carousel/property-image-carousel.component';
+import { PaypalComponent } from './components/paypal/paypal.component';
+import { PaymantConfirmationComponent } from './pages/paymant-confirmation/paymant-confirmation.component';
+import { PropertyEditComponent } from './pages/property-edit/property-edit.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,11 @@ import { AuthInterceptor } from './interceptors/auth-interceptor.interceptor';
     LoginComponent,
     RegisterComponent,
     PropertyDetailsComponent,
-    PropertyCreateComponent
+    PropertyCreateComponent,
+    PropertyImageCarouselComponent,
+    PaypalComponent,
+    PaymantConfirmationComponent,
+    PropertyEditComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +44,7 @@ import { AuthInterceptor } from './interceptors/auth-interceptor.interceptor';
     FontAwesomeModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [
     {

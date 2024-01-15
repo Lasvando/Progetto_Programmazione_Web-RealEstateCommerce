@@ -1,14 +1,9 @@
-const Role = require('./Role')
 const User = require('./User')
 const Property = require('./Property')
 const Transaction = require('./Transaction')
 const PropertyImage = require('./PropertyImage')
 
 const associate = () => {
-    //ROLE-USER ONE-MANY
-    User.belongsTo(Role)
-    Role.hasMany(User)
-
     //PROPERTY-USER ONE-MANY
     Property.belongsTo(User)
     User.hasMany(Property)
@@ -22,7 +17,7 @@ const associate = () => {
     Property.hasOne(Transaction)
 
     //PROPERTY_IMAGE-PROPERTY
-    PropertyImage.belongsTo(Property)
+    PropertyImage.belongsTo(Property, { onDelete: 'cascade' })
     Property.hasMany(PropertyImage)
 }
 

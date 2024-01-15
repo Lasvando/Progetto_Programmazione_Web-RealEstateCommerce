@@ -68,10 +68,27 @@ const deleteById = async (req, res) => {
     res.status(204).send()
 }
 
+const findByUserAndPropertyId = async (req, res) => {
+    let transaction = {}
+    try{
+        transaction = await Transaction.findOne({where: {
+            userId: req.user.payload.id,
+            propertyId: req.params.propertyId
+        }})
+    }catch(error){
+        return res.status(500).json({errors: error})
+    }
+
+    if(!transaction) return res.status(404).send()
+
+    res.status(200).send(transaction)
+}
+
 module.exports = {
     create,
     find,
     findAll,
     update,
-    deleteById
+    deleteById,
+    findByUserAndPropertyId
 }

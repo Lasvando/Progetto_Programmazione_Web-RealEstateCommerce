@@ -12,7 +12,9 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   roles: Role[] | undefined = undefined
-  passwordCheck : boolean | undefined = undefined;
+  passwordCheck : boolean | undefined = undefined
+  httpError: boolean = false
+  httpErrorMsg: string[] | undefined = undefined
 
   registerForm = new FormGroup({
     username: new FormControl('', [
@@ -29,21 +31,14 @@ export class RegisterComponent implements OnInit {
     confirmPassword: new FormControl('',[
       Validators.required,
     ]),
-    roleId: new FormControl('', [
-      Validators.required
-    ]),
     phone: new FormControl('',[
       Validators.required
     ])
   })
 
-  constructor(private authService: AuthService, private roleService: RoleService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    this.roleService.getAll().subscribe({
-      next: roles => this.roles = roles,
-      error: err => console.log(err)
-    })
   }
 
   get username(){
@@ -66,10 +61,6 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('phone')
   }
 
-  get roleId(){
-    return this.registerForm.get('roleId')
-  }
-
   register(){
     if(this.password?.value !== this.confirmPassword?.value){
       this.passwordCheck = false;
@@ -80,14 +71,28 @@ export class RegisterComponent implements OnInit {
       this.username?.value, 
       this.email?.value, 
       this.phone?.value, 
-      this.roleId?.value, 
       this.password?.value).subscribe({
         next: jwt => {
           console.log("User is logged in");
           this.authService.setSession(jwt)
           this.router.navigateByUrl('/');
         },
-        error: err => console.log(err)
+        error: err => { 
+          this.httpErrorMsg = [];
+          console.log(err);
+          this.httpError = true;
+          if((err.error.errors) instanceof Array){
+            (err.error.errors).forEach((errorMsg: any) => {
+              console.log(this.httpErrorMsg);
+                this.httpErrorMsg?.push(errorMsg.msg)
+            });
+          }else if((err.error.errors.errors) instanceof Array){
+            (err.error.errors.errors).forEach((errorMsg: any) => {
+              console.log(this.httpErrorMsg);
+                this.httpErrorMsg?.push(errorMsg.message)
+            });
+          }
+        }
       })
   }
 }

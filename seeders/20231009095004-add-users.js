@@ -8,7 +8,6 @@ module.exports = {
       email: 'sciarabbafederico@outlook.it',
       phone: '3342662919',
       password: 'k0aWXonkLVkFKIBqJsmlE92s74UugoAMect+SCB+ubM=',
-      roleId: 1,
       createdAt: new Date(),
       updatedAt: new Date()
     },
@@ -17,7 +16,6 @@ module.exports = {
       email: 'venditore@outlook.it',
       phone: '3342991919',
       password: 'k0aWXonkLVkFKIBqJsmlE92s74UugoAMect+SCB+ubM=',
-      roleId: 2,
       createdAt: new Date(),
       updatedAt: new Date()
     },

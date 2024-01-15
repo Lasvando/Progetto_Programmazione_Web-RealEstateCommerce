@@ -6,7 +6,7 @@ dotenv.config();
 
 const generateAccessToken = async (payload) => {
   return jwt.sign({ payload }, process.env.TOKEN_SECRET, {
-    expiresIn: "1800s",
+    expiresIn: "30m",
   });
 };
 const authenticateToken = async (req, res, next) => {
@@ -16,8 +16,6 @@ const authenticateToken = async (req, res, next) => {
   if (token == null) return res.sendStatus(401);
 
   jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
-    console.log(err);
-
     if (err) return res.sendStatus(403);
 
     req.user = user;

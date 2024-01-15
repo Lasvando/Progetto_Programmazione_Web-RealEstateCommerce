@@ -14,14 +14,12 @@ export class NavbarComponent implements OnInit{
   logged : boolean = false;
   isCollapsed : boolean = true;
   username: string | null = null
-  roleId: any = null
 
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(){
     this.logged = this.authService.isLoggedIn()
-    this.username = localStorage.getItem('username')
-    this.roleId = localStorage.getItem('roleId')  
+    this.username = localStorage.getItem('username')  
   }
 
   logout(){

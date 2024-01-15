@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Property } from 'src/app/models/Property';
 import { PropertyService } from 'src/app/service/property.service';
 
@@ -9,10 +10,14 @@ import { PropertyService } from 'src/app/service/property.service';
 })
 export class WelcomeComponent implements OnInit {
   properties: Property[] | undefined = undefined 
+  routeAlert: string | undefined = undefined
 
-  constructor(private propertyService : PropertyService){}
+  constructor(private propertyService : PropertyService, private route: ActivatedRoute){}
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.routeAlert = params['routeAlert'];
+    });
     this.getAll();
   }
 

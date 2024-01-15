@@ -1,6 +1,5 @@
 var crypto = require('crypto'); 
 const User = require('../models/User');
-const Role = require('../models/Role');
 
 const create = async (username, email, password, roleId, phone) => {
     var password = crypto.createHash('sha256').update(password).digest('base64');

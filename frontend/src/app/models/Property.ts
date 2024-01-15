@@ -1,3 +1,5 @@
+import { PropertyImage } from "./PropertyImage"
+
 export interface Property {
     id: number,
     title: string,
@@ -10,11 +12,5 @@ export interface Property {
         email: string,
         phone: string
     }
-    property_images: [
-        {
-            id: number,
-            filename: string
-            link: string
-        }
-    ]
+    property_images: PropertyImage[]
 }

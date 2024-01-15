@@ -1,0 +1,7 @@
+<ngb-carousel #carousel [interval]="3000" [pauseOnFocus]="true">
+  <ng-template ngbSlide *ngFor="let img of propertyImageLink">
+    <div class="picsum-img-wrapper">
+      <img [src]="img.link" alt="Image {{ img.id }}" class="img-thumbnail" />
+    </div>
+  </ng-template>
+</ngb-carousel>

@@ -1,6 +1,13 @@
 <app-navbar></app-navbar>
 
 <div class="container">
+  <div *ngIf="httpError">
+    <div class="text-danger">
+      <ul>
+        <li *ngFor="let msg of httpErrorMsg">{{ msg }}</li>
+      </ul>
+    </div>
+  </div>
   <form [formGroup]="registerForm" (ngSubmit)="register()">
     <div class="mb-3">
       <label for="username" class="form-label">Username</label>
@@ -90,25 +97,6 @@
       </div>
       <div *ngIf="passwordCheck === false" class="text-danger">
         Passwords are not equals
-      </div>
-    </div>
-    <div class="mb-3">
-      <label for="roleId" class="form-label">Role</label>
-      <select
-        name="roleId"
-        id="roleId"
-        class="form-select"
-        formControlName="roleId"
-      >
-        <option *ngFor="let role of roles" value="{{ role.id }}">
-          {{ role.name }}
-        </option>
-      </select>
-      <div
-        *ngIf="roleId?.invalid && (roleId?.dirty || roleId?.touched)"
-        class="text-danger"
-      >
-        <div *ngIf="roleId?.errors?.['required']">Role is required.</div>
       </div>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>

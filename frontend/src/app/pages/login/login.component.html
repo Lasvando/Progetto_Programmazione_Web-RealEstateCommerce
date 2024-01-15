@@ -1,28 +1,44 @@
 <app-navbar></app-navbar>
 
 <div class="container">
-    <form [formGroup]="loginForm" (ngSubmit)="login()">
-        <div class="mb-3">
-          <label for="email" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" formControlName="email">
-          <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-danger">
-            <div *ngIf="email?.errors?.['required']">
-                Email is required.
-            </div>
-            <div *ngIf="email?.errors?.['email']">
-                Email input is not a valid email
-            </div>
+  <div *ngIf="failedLogin" class="alert alert-danger" role="alert">
+    Email not registered or wrong combination
+  </div>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        aria-describedby="emailHelp"
+        formControlName="email"
+      />
+      <div
+        *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+        class="text-danger"
+      >
+        <div *ngIf="email?.errors?.['required']">Email is required.</div>
+        <div *ngIf="email?.errors?.['email']">
+          Email input is not a valid email
         </div>
-        </div>
-        <div class="mb-3">
-          <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" id="password" formControlName="password">
-          <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-danger">
-            <div *ngIf="password?.errors?.['required']">
-                Password is required.
-            </div>
-        </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        formControlName="password"
+      />
+      <div
+        *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+        class="text-danger"
+      >
+        <div *ngIf="password?.errors?.['required']">Password is required.</div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+  </form>
 </div>

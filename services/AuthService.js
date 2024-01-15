@@ -1,22 +1,16 @@
-var crypto = require('crypto'); 
 const User = require('../models/User');
-const Role = require('../models/Role');
 
-const register = async (username, email, password, roleId, phone) => {
-    var password = crypto.createHash('sha256').update(password).digest('base64');
+const register = async (username, email, password, phone) => {
 
     var data = {
       username,
       email,
       password,
-      roleId,
       phone
     }
     
     const user = await User.create(data)
-    const result = await User.findByPk(user.id, {
-      include: [Role]
-    })
+    const result = await User.findByPk(user.id)
 
     return result;
 }
@@ -28,7 +22,6 @@ const login = async (email, password) => {
             email: email,
             password: password
         },
-        include: [Role]
     })
 
     if(!user) return false;

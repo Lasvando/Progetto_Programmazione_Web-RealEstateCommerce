@@ -10,7 +10,6 @@ var storage = multer.diskStorage({
     cb(null, "public/properties/");
   },
   filename: function (req, file, cb) {
-    console.log(file)
     cb(null, Date.now() + path.extname(file.originalname)); //Appending extension
   },
 });
@@ -25,7 +24,7 @@ router.post(
 );
 router.get("/", propertyController.findAll);
 router.get("/:id", propertyController.find);
-router.put("/:id", JwtService.authenticateToken, propertyController.update);
+router.put("/:id", JwtService.authenticateToken, upload.array("photos", 12), propertyController.update);
 router.delete(
   "/:id",
   JwtService.authenticateToken,

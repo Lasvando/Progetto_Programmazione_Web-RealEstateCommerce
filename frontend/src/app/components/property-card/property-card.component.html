@@ -1,5 +1,5 @@
-<a [routerLink]="['/property-details', property?.id]">
-  <div class="card" style="width:18rem;">
+<a [routerLink]="['/property-details', property?.id]" class="property-card-anchor">
+  <div class="card grow" style="width:18rem;">
     <img src="{{ property?.property_images?.[0]?.link}}" class="card-img-top" alt="">
     <div class="card-body">
       <h5 class="card-title">{{property?.title}}</h5>

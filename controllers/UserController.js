@@ -12,7 +12,6 @@ const create = async (req, res) => {
     const username = req.body.username;
     const email = req.body.email;
     const password = req.body.password;
-    const roleId = req.body.roleId;
     const phone = req.body.phone;
 
     try {
@@ -20,7 +19,6 @@ const create = async (req, res) => {
         username,
         email,
         password,
-        roleId,
         phone
       );
 

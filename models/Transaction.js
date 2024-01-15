@@ -4,7 +4,7 @@ const sequelize = require('../sequelize')
 class Transaction extends Model{}
 
 Transaction.init({
-    debit_card: {
+    paypalTransactionId: {
         type: DataTypes.STRING,
         unique: true,
         allowNull: false
