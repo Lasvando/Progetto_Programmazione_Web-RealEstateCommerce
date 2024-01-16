@@ -55,5 +55,21 @@ Le associazioni tra le tabelle vengono gestite dall'ORM nel file ./models/Associ
 - 1:n (properties, transactions)
 - 1:n (properties, property_images)
 
+### Fasi preliminari prima di avviare l'applicazione
+Prima di avviare l'applicazione è necessario creare il file nella root di progetto con le variabili d'ambiente (.env), sono necessarie le seguenti:
+- PORT = {{ Inserire una porta libera }}
+- DB_NAME = {{ Inserire un nome per il DB }}.db
+- TOKEN_SECRET = {{ Inserire una secret key per la generazione e l'autenticazione dei JWT }}
+- BASE_URL = http://localhost:
 
+**Nel caso la porta sia diversa da 3000, sarà necessario cambiare anche la variabile d'ambiente nei file di Angular presenti sotto il path ./frontend/src/environments, è sufficiente aggiornare la porta 3000 con quella inserita in precedenza**
+
+### Come usarlo
+1. Pull della repository
+2. Aprire il terminale all'interno della root di progetto
+3. npm install (solo prima volta)
+4. node app
+5. cd frontend
+6. npm install (solo prima volta)
+7. ng serve
 
