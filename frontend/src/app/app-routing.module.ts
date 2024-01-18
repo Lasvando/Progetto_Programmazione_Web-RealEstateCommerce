@@ -6,9 +6,10 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { PropertyDetailsComponent } from './pages/property-details/property-details.component';
 import { PropertyCreateComponent } from './pages/property-create/property-create.component';
-import { PaymantConfirmationComponent } from './pages/paymant-confirmation/paymant-confirmation.component';
+import { PaymentConfirmationComponent } from './pages/payment-confirmation/payment-confirmation.component';
 import { PropertyEditComponent } from './pages/property-edit/property-edit.component';
 import { authGuard } from './guards/auth.guard';
+import { BookingComponent } from './pages/booking/booking.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent, title: 'Welcome', data: {routeName: "Home"}},
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'property-details/:id', component: PropertyDetailsComponent, title: 'Property Details'},
   { path: 'property-edit/:id', component: PropertyEditComponent, title: 'Property Edit', canActivate:[authGuard]},
   { path: 'property-create', component: PropertyCreateComponent, title: 'Property Create'},
-  { path: 'payment-confirmation', component: PaymantConfirmationComponent, title: 'Payment Confirmed'},
+  { path: 'payment-confirmation', component: PaymentConfirmationComponent, title: 'Payment Confirmed'},
+  { path: 'booking', component: BookingComponent, title: 'Booking'},
   { path: '**', component: NotFoundComponent, title: 'Not Found'}
 ];
 

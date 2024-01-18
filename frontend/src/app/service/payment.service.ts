@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
+import { Transaction } from '../models/Transaction';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PaymentService {
   apiUrl: string = environment.apiUrl;
-
+  
   constructor(private http: HttpClient) {}
 
   create(paypalTransactionId: any, propertyId: any) {
@@ -21,6 +22,12 @@ export class PaymentService {
   find(propertyId: any) {
     return this.http.get(
       this.apiUrl + '/api/transaction/find-already-booked/' + propertyId
+    );
+  }
+
+  findAll() {
+    return this.http.get<Transaction[]>(
+      this.apiUrl + '/api/transaction'
     );
   }
 }

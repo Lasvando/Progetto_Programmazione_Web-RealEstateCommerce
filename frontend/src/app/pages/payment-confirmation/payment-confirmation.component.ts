@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-paymant-confirmation',
-  templateUrl: './paymant-confirmation.component.html',
-  styleUrls: ['./paymant-confirmation.component.css']
+  selector: 'app-payment-confirmation',
+  templateUrl: './payment-confirmation.component.html',
+  styleUrls: ['./payment-confirmation.component.css']
 })
-export class PaymantConfirmationComponent implements OnInit {
+export class PaymentConfirmationComponent implements OnInit {
   paymentId: any;
 
   constructor(private route: ActivatedRoute) {}

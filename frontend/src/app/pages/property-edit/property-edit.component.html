@@ -1,8 +1,8 @@
 <app-navbar></app-navbar>
 <div class="container">
-  <form [formGroup]="propertyCreateForm" (ngSubmit)="edit()" enctype="multipart/form-data">
+  <form [formGroup]="propertyEditForm" (ngSubmit)="edit()" enctype="multipart/form-data">
     <div class="mb-3">
-      <label for="title" class="form-label">Title</label>
+      <label for="title" class="form-label">Titolo</label>
       <input
         type="title"
         class="form-control"
@@ -15,11 +15,11 @@
         *ngIf="title?.invalid && (title?.dirty || title?.touched)"
         class="text-danger"
       >
-        <div *ngIf="title?.errors?.['required']">Title is required.</div>
+        <div *ngIf="title?.errors?.['required']">Il titolo è necessario</div>
       </div>
     </div>
     <div class="mb-3">
-      <label for="address" class="form-label">Address</label>
+      <label for="address" class="form-label">Indirizzo</label>
       <input
         type="address"
         class="form-control"
@@ -32,11 +32,11 @@
         *ngIf="address?.invalid && (address?.dirty || address?.touched)"
         class="text-danger"
       >
-        <div *ngIf="address?.errors?.['required']">Address is required.</div>
+        <div *ngIf="address?.errors?.['required']">L'indirizzo è necessario</div>
       </div>
     </div>
     <div class="mb-3">
-      <label for="price" class="form-label">Price</label>
+      <label for="price" class="form-label">Prezzo</label>
       <input
         type="price"
         class="form-control"
@@ -49,12 +49,12 @@
         *ngIf="price?.invalid && (price?.dirty || price?.touched)"
         class="text-danger"
       >
-        <div *ngIf="price?.errors?.['required']">Price is required.</div>
-        <div *ngIf="price?.errors?.['min']">Price cannot be lower than 1.</div>
+        <div *ngIf="price?.errors?.['required']">Il prezzo è necessario</div>
+        <div *ngIf="price?.errors?.['min']">Il prezzo non può essere minore di 1</div>
       </div>
     </div>
     <div class="mb-3">
-      <label for="description" class="form-label">Description</label>
+      <label for="description" class="form-label">Descrizione</label>
       <textarea
         name="description"
         class="form-control"
@@ -72,16 +72,16 @@
         class="text-danger"
       >
         <div *ngIf="description?.errors?.['required']">
-          Description is required.
+          La descrizione è necessaria
         </div>
       </div>
     </div>
     <div class="mb-3">
-      <label for="file" class="form-label">Photos</label>
+      <label for="file" class="form-label">Foto</label>
       <div class="d-flex">
         <div *ngFor="let image of property?.property_images" class="mx-2">
           <img src="{{image.link}}" alt="{{image.filename}}" class="img-thumbnail" style="max-width: 300px;"><br>
-          <button class="btn btn-danger w-100" type="button" (click)="removeImage(image.id)">Remove</button>
+          <button class="btn btn-danger w-100" type="button" (click)="removeImage(image.id)">Rimuovi</button>
         </div>
       </div>
       <input
@@ -93,9 +93,9 @@
         multiple
       />
       <div *ngIf="!checkFiles" class="text-danger">
-        At least one image is required.
+        Almeno una immagine è necessaria
       </div>
     </div>
-    <button type="submit" class="btn btn-primary">Edit</button>
+    <button type="submit" class="btn btn-primary">Modifica</button>
   </form>
 </div>

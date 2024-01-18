@@ -12,19 +12,16 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/" routerLinkActive="active">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/about" routerLinkActive="active">About</a>
-          </li>
         </ul>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="logged">
           <li class="nav-item">
             <a class="nav-link" routerLink="/" routerLinkActive="active">Dashboard</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/about" routerLinkActive="active">About</a>
+            <a class="nav-link" routerLink="/property-create" routerLinkActive="active">Crea inserzione</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/property-create" routerLinkActive="active">Place an Ad</a>
+            <a class="nav-link" routerLink="/booking" routerLinkActive="active">Prenotazioni</a>
           </li>
         </ul>
         <div class="d-flex">
@@ -38,9 +35,6 @@
               <fa-icon [icon]="faCircleUser"></fa-icon>
             </div>
             <ul class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
-              <li><a class="dropdown-item" routerLink="account">Account</a></li>
-              <li><a class="dropdown-item" routerLink="legal-notes">Note legali</a></li>
-              <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" (click)="logout()" routerLink="" >Logout</a></li>
             </ul>
           </div>

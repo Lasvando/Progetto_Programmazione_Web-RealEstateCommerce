@@ -18,8 +18,9 @@ import { PropertyCreateComponent } from './pages/property-create/property-create
 import { AuthInterceptor } from './interceptors/auth-interceptor.interceptor';
 import { PropertyImageCarouselComponent } from './pages/property-details/property-image-carousel/property-image-carousel.component';
 import { PaypalComponent } from './components/paypal/paypal.component';
-import { PaymantConfirmationComponent } from './pages/paymant-confirmation/paymant-confirmation.component';
+import { PaymentConfirmationComponent } from './pages/payment-confirmation/payment-confirmation.component';
 import { PropertyEditComponent } from './pages/property-edit/property-edit.component';
+import { BookingComponent } from './pages/booking/booking.component';
 
 @NgModule({
   declarations: [
@@ -34,8 +35,9 @@ import { PropertyEditComponent } from './pages/property-edit/property-edit.compo
     PropertyCreateComponent,
     PropertyImageCarouselComponent,
     PaypalComponent,
-    PaymantConfirmationComponent,
-    PropertyEditComponent
+    PaymentConfirmationComponent,
+    PropertyEditComponent,
+    BookingComponent
   ],
   imports: [
     BrowserModule,

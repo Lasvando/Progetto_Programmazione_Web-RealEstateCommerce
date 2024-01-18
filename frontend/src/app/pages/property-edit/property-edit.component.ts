@@ -15,7 +15,7 @@ export class PropertyEditComponent implements OnInit {
   imagesId: number[] | undefined = undefined
   checkFiles: boolean = true;
   property: Property | undefined = undefined;
-  propertyCreateForm = new FormGroup({
+  propertyEditForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
     address: new FormControl('', [Validators.required]),
@@ -26,16 +26,16 @@ export class PropertyEditComponent implements OnInit {
   constructor(private propertyService: PropertyService, private routeActive: ActivatedRoute, private router: Router) {}
   
   get title() {
-    return this.propertyCreateForm.get('title');
+    return this.propertyEditForm.get('title');
   }
   get description() {
-    return this.propertyCreateForm.get('description');
+    return this.propertyEditForm.get('description');
   }
   get address() {
-    return this.propertyCreateForm.get('address');
+    return this.propertyEditForm.get('address');
   }
   get price() {
-    return this.propertyCreateForm.get('price');
+    return this.propertyEditForm.get('price');
   }
 
   ngOnInit(): void {
@@ -66,6 +66,11 @@ export class PropertyEditComponent implements OnInit {
   }
 
   edit(){
+    if(this.propertyEditForm.invalid){
+      alert("Inserire i dati richiesti")
+      return;
+    }
+
     this.propertyService.update(
       this.property?.id,
       this.title?.value,

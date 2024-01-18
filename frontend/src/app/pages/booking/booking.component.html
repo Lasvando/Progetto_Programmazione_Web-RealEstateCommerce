@@ -1,0 +1,20 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    <table class="table table-sm table-striped">
+        <th>Inserzione</th>
+        <th>Numero Ordine</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Telefono</th>
+        <tbody>
+            <tr *ngFor="let transaction of transactions" class="align-middle">
+                <td><a class="btn btn-link" routerLink="/property-details/{{transaction.propertyId}}">{{transaction.property.title}}</a></td>
+                <td>{{transaction.paypalTransactionId}}</td>
+                <td>{{transaction.user.username}}</td>
+                <td><a href="mailto:{{transaction.user.email}}">{{transaction.user.email}}</a></td>
+                <td>{{transaction.user.phone}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

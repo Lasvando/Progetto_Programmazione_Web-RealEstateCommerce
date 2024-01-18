@@ -12,11 +12,11 @@
       <div>
         <div class="row">
           <div class="col-md-6">
-            <span>Title</span>
+            <span>Titolo</span>
             <p>{{ property?.title }}</p>
           </div>
           <div class="col-md-6">
-            <span>Price</span>
+            <span>Prezzo</span>
             <p>{{ property?.price }}€</p>
           </div>
         </div>
@@ -25,7 +25,7 @@
       <div>
         <div class="row">
           <div class="col">
-            <span>Description</span>
+            <span>Descrizione</span>
             <p>{{ property?.description }}</p>
           </div>
         </div>
@@ -34,11 +34,11 @@
       <div>
         <div class="row">
           <div class="col-md-6">
-            <span>Author</span>
+            <span>Autore</span>
             <p>{{ property?.user?.username }}</p>
           </div>
           <div class="col-md-6">
-            <span>Author Phone</span>
+            <span>Numero di telefono dell'autore</span>
             <p>{{ property?.user?.phone }}</p>
           </div>
         </div>
@@ -47,11 +47,11 @@
       <div>
         <div class="row">
           <div class="col">
-            <span>Author Email</span>
+            <span>Email dell'autore</span>
             <p>{{ property?.user?.email }}</p>
           </div>
           <div class="col">
-            <span>Address</span>
+            <span>Indirizzo</span>
             <p>{{ property?.address }}</p>
           </div>
         </div>
@@ -60,7 +60,7 @@
         <div *ngIf="!alreadyBooked; else alreadyBookedRef">
           <div *ngIf="logged; else loggedOut">
             <hr />
-            <span>Book a visit by leaving a deposit of {{ depositAmount }}€</span>
+            <span>Prenota una visita lasciando una caparra di {{ depositAmount }}€</span>
             <app-paypal
               [amount]="depositAmount"
               [propertyId]="property?.id"
@@ -70,16 +70,16 @@
       </div>
       <div *ngIf="myProperty">
         <a class="btn btn-success w-100 mb-3" routerLink="/property-edit/{{property?.id}}">Modifica</a>
-        <button type="button" class="btn btn-danger w-100" (click)="delete()">Delete</button>
+        <button type="button" class="btn btn-danger w-100" (click)="delete()">Elimina</button>
       </div>
       <ng-template #alreadyBookedRef>
         <span class="text-success bg-black p-2">
-          <b>Visit has been already booked</b>
+          <b>La visita è stata già prenotata</b>
         </span>
       </ng-template>
       <ng-template #loggedOut>
         <span class="text-warning bg-black p-2">
-          <b>Please login to book a visit</b>
+          <b>Effettua il login per prenotare una visita</b>
           </span>
       </ng-template>
     </div>

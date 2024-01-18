@@ -6,7 +6,7 @@
   </div>
   <form [formGroup]="loginForm" (ngSubmit)="login()">
     <div class="mb-3">
-      <label for="email" class="form-label">Email address</label>
+      <label for="email" class="form-label">Email</label>
       <input
         type="email"
         class="form-control"
@@ -18,9 +18,9 @@
         *ngIf="email?.invalid && (email?.dirty || email?.touched)"
         class="text-danger"
       >
-        <div *ngIf="email?.errors?.['required']">Email is required.</div>
+        <div *ngIf="email?.errors?.['required']">L'email è obbligatoria.</div>
         <div *ngIf="email?.errors?.['email']">
-          Email input is not a valid email
+          La email inserita non è una email valida
         </div>
       </div>
     </div>
@@ -36,9 +36,9 @@
         *ngIf="password?.invalid && (password?.dirty || password?.touched)"
         class="text-danger"
       >
-        <div *ngIf="password?.errors?.['required']">Password is required.</div>
+        <div *ngIf="password?.errors?.['required']">La password è obbligatoria</div>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+    <button type="submit" class="btn btn-primary mb-2">Accedi</button>
   </form>
 </div>

@@ -27,10 +27,12 @@ const create = async (req, res) => {
 const findAll = async (req, res) => {
     let transactions = {}
 
-    //TODO : FindAll solo delle transazione dell'utente loggato
     try {
         transactions = await Transaction.findAll({
-            include:[User, Property]
+            include: [{
+                model: Property,
+                where: {userId: req.user.payload.id}
+            }, User]
         })
     } catch (error) {
         return res.status(500).json({errors: error})

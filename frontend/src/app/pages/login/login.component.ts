@@ -30,6 +30,11 @@ export class LoginComponent implements OnInit  {
   get password() {return this.loginForm.get('password')}
 
   login(){
+    if(this.loginForm.invalid){
+      alert("Inserire i dati richiesti")
+      return;
+    }
+
     this.authService.login(this.email?.value, this.password?.value).subscribe({
       next: jwt => {
         console.log("User is logged in");

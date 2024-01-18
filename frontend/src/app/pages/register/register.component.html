@@ -21,11 +21,11 @@
         *ngIf="username?.invalid && (username?.dirty || username?.touched)"
         class="text-danger"
       >
-        <div *ngIf="username?.errors?.['required']">Username is required.</div>
+        <div *ngIf="username?.errors?.['required']">Lo Username è necessario</div>
       </div>
     </div>
     <div class="mb-3">
-      <label for="email" class="form-label">Email address</label>
+      <label for="email" class="form-label">Email</label>
       <input
         type="email"
         class="form-control"
@@ -37,14 +37,14 @@
         *ngIf="email?.invalid && (email?.dirty || email?.touched)"
         class="text-danger"
       >
-        <div *ngIf="email?.errors?.['required']">Email is required.</div>
+        <div *ngIf="email?.errors?.['required']">L'Email è necessaria</div>
         <div *ngIf="email?.errors?.['email']">
-          Email input is not a valid email
+          L'email inserita non è valida
         </div>
       </div>
     </div>
     <div class="mb-3">
-      <label for="phone" class="form-label">Phone</label>
+      <label for="phone" class="form-label">Telefono</label>
       <input
         type="phone"
         class="form-control"
@@ -55,7 +55,7 @@
         *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)"
         class="text-danger"
       >
-        <div *ngIf="phone?.errors?.['required']">Phone number is required.</div>
+        <div *ngIf="phone?.errors?.['required']">Il numero di telefono è necessario</div>
       </div>
     </div>
     <div class="mb-3">
@@ -70,14 +70,14 @@
         *ngIf="password?.invalid && (password?.dirty || password?.touched)"
         class="text-danger"
       >
-        <div *ngIf="password?.errors?.['required']">Password is required.</div>
+        <div *ngIf="password?.errors?.['required']">La password è necessaria</div>
         <div *ngIf="password?.errors?.['minlength']">
-          Password should be 8 chars minimun.
+          La password deve essere di almeno 8 caratteri
         </div>
       </div>
     </div>
     <div class="mb-3">
-      <label for="confirmPassword" class="form-label">Password Confirm</label>
+      <label for="confirmPassword" class="form-label">Conferma Password</label>
       <input
         type="password"
         class="form-control"
@@ -92,13 +92,13 @@
         class="text-danger"
       >
         <div *ngIf="confirmPassword?.errors?.['required']">
-          Password Confirm is required.
+          La conferma della password è necessaria
         </div>
       </div>
       <div *ngIf="passwordCheck === false" class="text-danger">
-        Passwords are not equals
+        Le password non coincidono
       </div>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Registrati</button>
   </form>
 </div>

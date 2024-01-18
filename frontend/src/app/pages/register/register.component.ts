@@ -62,6 +62,11 @@ export class RegisterComponent implements OnInit {
   }
 
   register(){
+    if(this.registerForm.invalid){
+      alert("Inserire i dati richiesti")
+      return;
+    }
+
     if(this.password?.value !== this.confirmPassword?.value){
       this.passwordCheck = false;
       return

@@ -39,6 +39,11 @@ export class PropertyCreateComponent {
   }
 
   create() {
+    if(this.propertyCreateForm.invalid){
+      alert("Inserire i dati richiesti")
+      return;
+    }
+
     if(this.files == undefined){
       this.checkFiles = false
       return
