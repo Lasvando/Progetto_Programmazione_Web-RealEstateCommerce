@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent, title: 'Register'},
   { path: 'property-details/:id', component: PropertyDetailsComponent, title: 'Property Details'},
   { path: 'property-edit/:id', component: PropertyEditComponent, title: 'Property Edit', canActivate:[authGuard]},
-  { path: 'property-create', component: PropertyCreateComponent, title: 'Property Create'},
+  { path: 'property-create', component: PropertyCreateComponent, title: 'Property Create', canActivate:[authGuard]},
   { path: 'payment-confirmation', component: PaymentConfirmationComponent, title: 'Payment Confirmed'},
   { path: 'booking', component: BookingComponent, title: 'Booking'},
   { path: '**', component: NotFoundComponent, title: 'Not Found'}

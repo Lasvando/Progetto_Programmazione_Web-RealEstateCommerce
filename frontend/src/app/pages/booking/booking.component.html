@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 
 <div class="container">
-    <table class="table table-sm table-striped">
+    <table class="table table-sm table-striped" *ngIf="transactions != undefined && transactions.length > 0;else noTransactions">
         <th>Inserzione</th>
         <th>Numero Ordine</th>
         <th>Username</th>
@@ -17,4 +17,7 @@
             </tr>
         </tbody>
     </table>
+    <ng-template #noTransactions>
+        <div class="alert alert-danger">Nessuna prenotazione ancora effettuata dai clienti</div>
+    </ng-template>
 </div>

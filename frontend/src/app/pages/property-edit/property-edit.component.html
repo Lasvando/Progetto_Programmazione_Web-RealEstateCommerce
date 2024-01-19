@@ -9,7 +9,6 @@
         id="title"
         aria-describedby="titleHelp"
         formControlName="title"
-        [value]="property?.title"
       />
       <div
         *ngIf="title?.invalid && (title?.dirty || title?.touched)"
@@ -26,7 +25,6 @@
         id="address"
         aria-describedby="addressHelp"
         formControlName="address"
-        [value]="property?.address"
       />
       <div
         *ngIf="address?.invalid && (address?.dirty || address?.touched)"
@@ -43,7 +41,6 @@
         id="price"
         aria-describedby="priceHelp"
         formControlName="price"
-        [value]="property?.price"
       />
       <div
         *ngIf="price?.invalid && (price?.dirty || price?.touched)"
@@ -63,7 +60,6 @@
         rows="10"
         formControlName="description"
         aria-describedby="descriptionHelp"
-        [value]="property?.description"
       ></textarea>
       <div
         *ngIf="
@@ -85,7 +81,7 @@
         </div>
       </div>
       <input
-        class="form-control"
+        class="form-control my-4"
         #Image
         type="file"
         id="file"

@@ -47,6 +47,11 @@ export class PropertyEditComponent implements OnInit {
       next: (property) => {
         this.property = property;
         
+        this.title?.setValue(property.title)
+        this.description?.setValue(property.description)
+        this.address?.setValue(property.address)
+        this.price?.setValue(property.price.toString())
+
         property.property_images.forEach(image => {
           this.oldImageIds?.push(image.id)
         });
