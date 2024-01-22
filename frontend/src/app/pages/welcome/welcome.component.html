@@ -8,7 +8,7 @@
         Nessuna inserzione presente, <a routerLink="/property-create">creane una</a>
     </div>
     <div class="row">
-        <div class="col-md-3" *ngFor="let property of properties">
+        <div class="col-12 col-md-6 col-sm-6 col-lg-4" *ngFor="let property of properties">
             <app-property-card [property]="property"></app-property-card>
         </div>
     </div>
